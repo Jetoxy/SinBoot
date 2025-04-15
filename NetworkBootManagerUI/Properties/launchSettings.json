@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "NetworkBootManagerUI": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "", // Не используется для WPF
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development" // Не обязательно для WPF
+      }
+    }
+  }
+}

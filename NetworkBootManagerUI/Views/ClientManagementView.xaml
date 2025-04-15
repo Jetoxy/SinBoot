@@ -1,0 +1,63 @@
+<UserControl x:Class="NetworkBootManagerUI.Views.ClientManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:NetworkBootManagerUI.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="750">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Статические клиенты (Зарезервированные)" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+        <DataGrid Grid.Row="1" x:Name="dgStaticClients" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="MAC Адрес" Binding="{Binding MacAddress}" Width="1.5*"/>
+                <DataGridTextColumn Header="IP Адрес" Binding="{Binding IpAddress}" Width="*"/>
+                <DataGridTextColumn Header="Имя хоста" Binding="{Binding Hostname}" Width="*"/>
+                <DataGridTextColumn Header="Группа" Binding="{Binding GroupName}" Width="*"/>
+                <DataGridTextColumn Header="Назначенный образ" Binding="{Binding AssignedImage}" Width="1.5*"/>
+                <DataGridCheckBoxColumn Header="Включен" Binding="{Binding IsEnabled}" Width="Auto"/>
+            </DataGrid.Columns>
+             <DataGrid.ItemsSource>
+                 <x:Array Type="{x:Type views:ClientInfo}">
+                    <views:ClientInfo MacAddress="00:11:22:AA:BB:CC" IpAddress="192.168.1.101" Hostname="PC-01" GroupName="Classroom1" AssignedImage="Win10-Base.vhd" IsEnabled="True"/>
+                    <views:ClientInfo MacAddress="00:11:22:AA:BB:DD" IpAddress="192.168.1.102" Hostname="PC-02" GroupName="Classroom1" AssignedImage="Win11-Test.vhd" IsEnabled="True"/>
+                    <views:ClientInfo MacAddress="00:11:22:AA:BB:EE" IpAddress="192.168.1.103" Hostname="Teacher-PC" GroupName="Teachers" AssignedImage="Win11-Teacher.vhd" IsEnabled="True"/>
+                 </x:Array>
+            </DataGrid.ItemsSource>
+        </DataGrid>
+
+        <TextBlock Grid.Row="2" Text="Динамические клиенты (Обнаруженные)" FontSize="14" FontWeight="Bold" Margin="0,10,0,5"/>
+        <DataGrid Grid.Row="3" x:Name="dgDynamicClients" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+             <DataGrid.Columns>
+                <DataGridTextColumn Header="MAC Адрес" Binding="{Binding MacAddress}" Width="1.5*"/>
+                <DataGridTextColumn Header="IP Адрес" Binding="{Binding IpAddress}" Width="*"/>
+                 <DataGridTextColumn Header="Имя хоста" Binding="{Binding Hostname}" Width="*"/>
+                 <DataGridTextColumn Header="Группа" Binding="{Binding GroupName}" Width="*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*"/>
+                <DataGridTextColumn Header="Время обнаружения" Binding="{Binding DiscoveryTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Width="1.5*"/>
+            </DataGrid.Columns>
+            <DataGrid.ItemsSource>
+                 <x:Array Type="{x:Type views:ClientInfo}">
+                    <views:ClientInfo MacAddress="00:DE:AD:BE:EF:01" IpAddress="192.168.1.55" Hostname="Unknown-PC1" GroupName="(default)" Status="Online"/>
+                 </x:Array>
+            </DataGrid.ItemsSource>
+        </DataGrid>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,10,0,0">
+            <Button Content="Добавить статического клиента" Margin="0,0,10,0" Padding="10,5"/>
+            <Button Content="Редактировать выбранного" Margin="0,0,10,0" Padding="10,5"/>
+            <Button Content="Удалить выбранного" Margin="0,0,10,0" Padding="10,5"/>
+             <Button Content="Назначить группу..." Margin="0,0,10,0" Padding="10,5"/>
+            <Button Content="Обновить списки" Padding="10,5"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

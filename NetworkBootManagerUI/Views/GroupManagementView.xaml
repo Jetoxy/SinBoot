@@ -1,0 +1,84 @@
+<UserControl x:Class="NetworkBootManagerUI.Views.GroupManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:NetworkBootManagerUI.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="550" d:DesignWidth="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/> <ColumnDefinition Width="*"/>   </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+            <TextBlock Text="Группы:" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,5"/>
+            <ListBox x:Name="lbGroups" Height="300" SelectionMode="Single">
+                <ListBoxItem Content="Classroom1"/>
+                <ListBoxItem Content="Classroom2"/>
+                <ListBoxItem Content="Teachers"/>
+                <ListBoxItem Content="Admins"/>
+                <ListBoxItem Content="(default)"/>
+            </ListBox>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Button Content="Добавить" Padding="5" Margin="0,0,5,0"/>
+                <Button Content="Удалить" Padding="5" Margin="0,0,5,0"/>
+                <Button Content="Переим." Padding="5"/>
+            </StackPanel>
+        </StackPanel>
+
+        <GroupBox Grid.Column="1" Header="Настройки группы: Classroom1" x:Name="gbGroupSettings">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="10">
+                    <TextBlock Text="Настройки загрузки:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Content="Загрузочный образ:" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center">
+                            <ComboBoxItem Content="Win10-Base.vhd"/>
+                            <ComboBoxItem Content="Win11-Test.vhd"/>
+                            <ComboBoxItem Content="Win11-Teacher.vhd"/>
+                            <ComboBoxItem Content="Linux-Ubuntu.img"/>
+                        </ComboBox>
+                        <Label Grid.Row="1" Grid.Column="0" Content="Меню загрузки:" VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center">
+                             <ComboBoxItem Content="(По умолчанию)"/>
+                             <ComboBoxItem Content="Меню для классов"/>
+                             <ComboBoxItem Content="Меню для учителей"/>
+                        </ComboBox>
+                    </Grid>
+
+                    <Separator Margin="0,10"/>
+
+                    <TextBlock Text="Настройки кэша клиента:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <Grid>
+                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+
+                         <Label Grid.Row="0" Grid.Column="0" Content="Тип кэша:" VerticalAlignment="Center"/>
+                         <ComboBox Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center">
+                             <ComboBoxItem Content="Кэш в ОЗУ клиента"/>
+                             <ComboBoxItem Content="Запись на диск сервера"/>
+                             <ComboBoxItem Content="Отключен (приватный образ)"/>
+                         </ComboBox>
+
+                         <Label Grid.Row="1" Grid.Column="0" Content="Размер RAM-кэша (MB):" VerticalAlignment="Center"/>
+                         <TextBox Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="512"/>
+
+                         <Label Grid.Row="1" Grid.Column="2" Content="Диск для записи (MB):" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                         <TextBox Grid.Row="1" Grid.Column="3" Margin="5" VerticalAlignment="Center" Text="10240" ToolTip="Размер диска для изменений клиента на сервере"/>
+                    </Grid>
+
+                    <Separator Margin="0,10"/>
+
+                    <TextBlock Text="Прочие настройки:" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                    <CheckBox Content="Разрешить подключение USB-устройств" Margin="5"/>
+                    <CheckBox Content="Включить фильтр контента (если поддерживается)" Margin="5"/>
+
+                    <Button Content="Сохранить изменения для группы" HorizontalAlignment="Left" Margin="0,20,0,0" Padding="10,5"/>
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
+
+    </Grid>
+</UserControl>

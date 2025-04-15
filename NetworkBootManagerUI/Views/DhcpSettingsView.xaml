@@ -1,0 +1,69 @@
+<UserControl x:Class="NetworkBootManagerUI.Views.DhcpSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="750">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Настройки DHCP Сервера" FontSize="16" FontWeight="Bold" Margin="0,0,0,15"/>
+
+            <GroupBox Header="Режим работы DHCP" Margin="0,0,0,10">
+                <StackPanel Margin="5">
+                    <RadioButton x:Name="rbInternalDhcp" Content="Использовать встроенный DHCP сервер" IsChecked="True" GroupName="DhcpMode"/>
+                    <RadioButton x:Name="rbExternalDhcp" Content="Использовать внешний DHCP сервер в сети" GroupName="DhcpMode"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox x:Name="gbInternalSettings" Header="Настройки встроенного DHCP" Margin="0,0,0,10"
+                      IsEnabled="{Binding ElementName=rbInternalDhcp, Path=IsChecked}">
+                 <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/> <RowDefinition Height="Auto"/> <RowDefinition Height="Auto"/> <RowDefinition Height="Auto"/> <RowDefinition Height="Auto"/> </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Сетевой интерфейс:" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="5" VerticalAlignment="Center"
+                              ToolTip="Сетевой адаптер, на котором будет работать DHCP сервер">
+                        <ComboBoxItem Content="(Автоматически)"/>
+                        <ComboBoxItem Content="Ethernet 1 - 192.168.1.10"/>
+                        <ComboBoxItem Content="Ethernet 2 - 10.0.0.5"/>
+                    </ComboBox>
+
+                    <Label Grid.Row="1" Grid.Column="0" Content="Начальный IP адрес:" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" ToolTip="Первый IP-адрес в диапазоне выдачи"/>
+
+                    <Label Grid.Row="1" Grid.Column="2" Content="Конечный IP адрес:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Margin="5" VerticalAlignment="Center" ToolTip="Последний IP-адрес в диапазоне выдачи"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Маска подсети:" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="255.255.255.0"/>
+
+                    <Label Grid.Row="2" Grid.Column="2" Content="Шлюз (Gateway):" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBox Grid.Row="2" Grid.Column="3" Margin="5" VerticalAlignment="Center" ToolTip="IP-адрес маршрутизатора (необязательно)"/>
+
+                     <Label Grid.Row="3" Grid.Column="0" Content="DNS Сервер 1:" VerticalAlignment="Center"/>
+                     <TextBox Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" ToolTip="Основной DNS-сервер"/>
+
+                     <Label Grid.Row="3" Grid.Column="2" Content="DNS Сервер 2:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                     <TextBox Grid.Row="3" Grid.Column="3" Margin="5" VerticalAlignment="Center" ToolTip="Дополнительный DNS-сервер (необязательно)"/>
+
+                     <Label Grid.Row="4" Grid.Column="0" Content="Время аренды (мин):" VerticalAlignment="Center"/>
+                     <TextBox Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="120" ToolTip="Время, на которое выдается IP-адрес клиенту"/>
+
+                     <Label Grid.Row="4" Grid.Column="2" Content="Префикс имени хоста:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                     <TextBox Grid.Row="4" Grid.Column="3" Margin="5" VerticalAlignment="Center" ToolTip="Префикс для имен клиентов (например, PC-)"/>
+
+                </Grid>
+            </GroupBox>
+
+            <Button Content="Сохранить настройки DHCP" HorizontalAlignment="Left" Padding="10,5" Margin="0,20,0,0"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
