@@ -1,4 +1,8 @@
+.vc/
 bin/
 obj/
 *.suo
 *.user
+*.sln
+[Dd]ebug/
+[Rr]elease/
