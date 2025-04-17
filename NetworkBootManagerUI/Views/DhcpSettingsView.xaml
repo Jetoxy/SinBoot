@@ -16,9 +16,25 @@
                 </StackPanel>
             </GroupBox>
 
+            <GroupBox x:Name="gbExternalSettings" Header="Настройки внешнего DHCP" Margin="0,0,0,10"
+                      IsEnabled="{Binding ElementName=rbExternalDhcp, Path=IsChecked}">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Grid.Column="0" Content="Внешний DHCP сервер:" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" ToolTip="IP-адрес внешнего DHCP сервера"/>
+                </Grid>
+            </GroupBox>
+
             <GroupBox x:Name="gbInternalSettings" Header="Настройки встроенного DHCP" Margin="0,0,0,10"
                       IsEnabled="{Binding ElementName=rbInternalDhcp, Path=IsChecked}">
-                 <Grid Margin="5">
+                <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -48,22 +64,25 @@
                     <Label Grid.Row="2" Grid.Column="2" Content="Шлюз (Gateway):" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     <TextBox Grid.Row="2" Grid.Column="3" Margin="5" VerticalAlignment="Center" ToolTip="IP-адрес маршрутизатора (необязательно)"/>
 
-                     <Label Grid.Row="3" Grid.Column="0" Content="DNS Сервер 1:" VerticalAlignment="Center"/>
-                     <TextBox Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" ToolTip="Основной DNS-сервер"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="DNS Сервер 1:" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="5" VerticalAlignment="Center" ToolTip="Основной DNS-сервер"/>
 
-                     <Label Grid.Row="3" Grid.Column="2" Content="DNS Сервер 2:" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                     <TextBox Grid.Row="3" Grid.Column="3" Margin="5" VerticalAlignment="Center" ToolTip="Дополнительный DNS-сервер (необязательно)"/>
+                    <Label Grid.Row="3" Grid.Column="2" Content="DNS Сервер 2:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBox Grid.Row="3" Grid.Column="3" Margin="5" VerticalAlignment="Center" ToolTip="Дополнительный DNS-сервер (необязательно)"/>
 
-                     <Label Grid.Row="4" Grid.Column="0" Content="Время аренды (мин):" VerticalAlignment="Center"/>
-                     <TextBox Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="120" ToolTip="Время, на которое выдается IP-адрес клиенту"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Время аренды (мин):" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="120" ToolTip="Время, на которое выдается IP-адрес клиенту"/>
 
-                     <Label Grid.Row="4" Grid.Column="2" Content="Префикс имени хоста:" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                     <TextBox Grid.Row="4" Grid.Column="3" Margin="5" VerticalAlignment="Center" ToolTip="Префикс для имен клиентов (например, PC-)"/>
-
+                    <Label Grid.Row="4" Grid.Column="2" Content="Префикс имени хоста:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBox Grid.Row="4" Grid.Column="3" Margin="5" VerticalAlignment="Center" ToolTip="Префикс для имен клиентов (например, PC-)"/>
                 </Grid>
             </GroupBox>
 
-            <Button Content="Сохранить настройки DHCP" HorizontalAlignment="Left" Padding="10,5" Margin="0,20,0,0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <Button Content="Сохранить настройки DHCP" Padding="10,5" Margin="0,0,10,0"/>
+                <Button Content="Запустить сервер" Padding="10,5" Margin="0,0,10,0"/>
+                <Button Content="Остановить сервер" Padding="10,5"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
