@@ -78,7 +78,7 @@
                 </Grid>
             </GroupBox>
 
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <StackPanel x:Name="buttonPanel" Orientation="Horizontal" Margin="0,20,0,0">
                 <Button Content="Сохранить настройки DHCP" Padding="10,5" Margin="0,0,10,0"/>
                 <Button Content="Запустить сервер" Padding="10,5" Margin="0,0,10,0"/>
                 <Button Content="Остановить сервер" Padding="10,5"/>
